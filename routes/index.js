@@ -11,11 +11,13 @@ router.post('/', function (req, res) {
         form: {
             token: botToken,
             as_user: false,
+            link_names: true,
             username: req.body.username,
             channel: req.body.channel,
             text: req.body.message
         }
     }, function (err, response, body) {
+        // Check response and re-render
         res.end();
     });
 });
