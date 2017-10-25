@@ -1,6 +1,6 @@
 {
   "name": "pseudonym",
-  "version": "1.0.0",
+  "version": "1.0",
   "description": "A web app to send messages as another user on Slack",
   "main": "index.js",
   "scripts": {
