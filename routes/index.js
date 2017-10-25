@@ -13,6 +13,7 @@ router.post('/', function (req, res) {
             as_user: false,
             link_names: true,
             username: sanitiseText(req.body.username || ''),
+            icon_url: sanitiseText(req.body.imageUrl || ''),
             channel: sanitiseText(req.body.channel || ''),
             text: sanitiseText(req.body.message || '')
         }
