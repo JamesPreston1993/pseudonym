@@ -3,7 +3,11 @@ var request = require('request');
 var botToken = require('../config.json').botToken;
 
 router.get('/', function (req, res) {
-    res.render('index');
+    res.render('index', {
+        username: '',
+        imageUrl: '',
+        channel: ''
+    });
 });
 
 router.post('/', function (req, res) {
@@ -19,7 +23,11 @@ router.post('/', function (req, res) {
         }
     }, function (err, response, body) {
         // Check response and re-render
-        res.end();
+        res.render('index', {
+            username: sanitiseText(req.body.username || ''),
+            imageUrl: sanitiseText(req.body.imageUrl || ''),
+            channel: sanitiseText(req.body.channel || '')
+        });
     });
 });
 
