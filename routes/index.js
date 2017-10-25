@@ -12,9 +12,9 @@ router.post('/', function (req, res) {
             token: botToken,
             as_user: false,
             link_names: true,
-            username: req.body.username,
-            channel: req.body.channel,
-            text: req.body.message
+            username: sanitiseText(req.body.username || ''),
+            channel: sanitiseText(req.body.channel || ''),
+            text: sanitiseText(req.body.message || '')
         }
     }, function (err, response, body) {
         // Check response and re-render
@@ -25,7 +25,7 @@ router.post('/', function (req, res) {
 module.exports = router;
 
 function sanitiseText(text) {
-    text.replace(/&/g , '&amp;');
-    text.replace(/</g , '&lt;');
-    text.replace(/>/g , '&gt;');
+    return text.replace(/&/g , '&amp;')
+        .replace(/</g , '&lt;')
+        .replace(/>/g , '&gt;');
 }
