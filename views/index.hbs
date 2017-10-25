@@ -1,4 +1,10 @@
 <div class="row">
+    {{#if message}}
+    <div class="alert alert-success" role="alert">{{message}}</div>
+    {{/if}}
+    {{#if error}}
+    <div class="alert alert-danger" role="alert">{{error}}</div>
+    {{/if}}
     <div class="thumbnail">
         <form method="POST" action="/">
             <div class="form-group">

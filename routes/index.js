@@ -22,12 +22,20 @@ router.post('/', function (req, res) {
             text: sanitiseText(req.body.message || '')
         }
     }, function (err, response, body) {
-        // Check response and re-render
-        res.render('index', {
+        var resObject = {
             username: sanitiseText(req.body.username || ''),
             imageUrl: sanitiseText(req.body.imageUrl || ''),
             channel: sanitiseText(req.body.channel || '')
-        });
+        };
+
+        var parsedBody = JSON.parse(body);
+        if (!parsedBody.ok) {
+            resObject.error = "Error sending message: " + parsedBody.error;
+        } else {
+            resObject.message = "Message Sent!"
+        }
+        // Check response and re-render
+        res.render('index', resObject);
     });
 });
 
